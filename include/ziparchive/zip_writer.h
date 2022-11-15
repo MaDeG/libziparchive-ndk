@@ -129,7 +129,7 @@ class ZipWriter {
    * Writes bytes to the zip file for the previously started zip entry.
    * Returns 0 on success, and an error value < 0 on failure.
    */
-  int32_t WriteBytes(const void* data, size_t len);
+  int32_t WriteBytes(void* data, size_t len);
 
   /**
    * Finish a zip entry started with StartEntry(const char*, size_t) or
@@ -164,7 +164,7 @@ class ZipWriter {
   int32_t HandleError(int32_t error_code);
   int32_t PrepareDeflate();
   int32_t StoreBytes(FileEntry* file, const void* data, uint32_t len);
-  int32_t CompressBytes(FileEntry* file, const void* data, uint32_t len);
+  int32_t CompressBytes(FileEntry* file, void* data, uint32_t len);
   int32_t FlushCompressedBytes(FileEntry* file);
   bool ShouldUseDataDescriptor() const;
 

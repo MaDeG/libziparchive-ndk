@@ -343,7 +343,7 @@ int32_t ZipWriter::PrepareDeflate() {
   return kNoError;
 }
 
-int32_t ZipWriter::WriteBytes(const void* data, size_t len) {
+int32_t ZipWriter::WriteBytes(void* data, size_t len) {
   if (state_ != State::kWritingEntry) {
     return HandleError(kInvalidState);
   }
@@ -382,14 +382,14 @@ int32_t ZipWriter::StoreBytes(FileEntry* file, const void* data, uint32_t len) {
   return kNoError;
 }
 
-int32_t ZipWriter::CompressBytes(FileEntry* file, const void* data, uint32_t len) {
+int32_t ZipWriter::CompressBytes(FileEntry* file, void* data, uint32_t len) {
   CHECK(state_ == State::kWritingEntry);
   CHECK(z_stream_);
   CHECK(z_stream_->next_out != nullptr);
   CHECK(z_stream_->avail_out != 0);
 
   // Prepare the input.
-  z_stream_->next_in = reinterpret_cast<const uint8_t*>(data);
+  z_stream_->next_in = reinterpret_cast<uint8_t*>(data);
   z_stream_->avail_in = len;
 
   while (z_stream_->avail_in > 0) {
