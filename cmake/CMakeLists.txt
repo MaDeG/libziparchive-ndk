@@ -9,6 +9,8 @@ if(EXISTS "${LOC_PATH}")
     message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles.")
 endif()
 
+set(LIBZIPARCHIVE_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../)
+
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
     message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
     file(DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/0.18.1/conan.cmake"
@@ -19,8 +21,8 @@ include(${CMAKE_BINARY_DIR}/conan.cmake)
 
 conan_cmake_autodetect(settings)
 conan_cmake_install(PATH_OR_REFERENCE ..
-                    PROFILE_HOST ../armv8.profile
-                    PROFILE_BUILD ../build.profile
+                    PROFILE_HOST ${LIBZIPARCHIVE_ROOT}/cmake/armv8.profile
+                    PROFILE_BUILD ${LIBZIPARCHIVE_ROOT}/cmake/build.profile
                     BUILD missing)
 
 # Set conan environment variables generated using the virtualenv generator
@@ -59,8 +61,6 @@ set(CMAKE_READELF      $ENV{READELF})
 set(CMAKE_LD           $ENV{LD})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
-
-set(LIBZIPARCHIVE_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../)
 
 set(ANDROID_SOURCES
     ${LIBZIPARCHIVE_ROOT}/android-base/errno_restorer.h
