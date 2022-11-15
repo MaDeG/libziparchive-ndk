@@ -20,7 +20,7 @@ endif()
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 
 conan_cmake_autodetect(settings)
-conan_cmake_install(PATH_OR_REFERENCE ..
+conan_cmake_install(PATH_OR_REFERENCE ${LIBZIPARCHIVE_ROOT}/cmake
                     PROFILE_HOST ${LIBZIPARCHIVE_ROOT}/cmake/armv8.profile
                     PROFILE_BUILD ${LIBZIPARCHIVE_ROOT}/cmake/build.profile
                     BUILD missing)
