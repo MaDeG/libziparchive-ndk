@@ -72,5 +72,3 @@ set(CMAKE_OBJCOPY      $ENV{OBJCOPY})
 set(CMAKE_OBJDUMP      $ENV{OBJDUMP})
 set(CMAKE_READELF      $ENV{READELF})
 set(CMAKE_LD           $ENV{LD})
-
-#include(./CMakeListsProject.txt)

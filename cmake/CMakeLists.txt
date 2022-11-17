@@ -1,3 +1,5 @@
+#TODO: Switch to the more Conan 2.0 compliant Python way of operating it
+
 cmake_minimum_required(VERSION 3.10)
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
@@ -34,12 +36,12 @@ set(LIBZIPARCHIVE_SOURCES
     ${LIBZIPARCHIVE_ROOT}zip_writer.cc
 )
 
-add_library(LIBZIPARCHIVE STATIC ${ANDROID_SOURCES} ${LIBZIPARCHIVE_SOURCES})
-target_include_directories(LIBZIPARCHIVE PUBLIC ${LIBZIPARCHIVE_ROOT}/include ${LIBZIPARCHIVE_ROOT}/incfs_support/include)
-target_include_directories(LIBZIPARCHIVE PRIVATE ${LIBZIPARCHIVE_ROOT})
+add_library(libziparchive STATIC ${ANDROID_SOURCES} ${LIBZIPARCHIVE_SOURCES})
+target_include_directories(libziparchive PUBLIC ${LIBZIPARCHIVE_ROOT}/include ${LIBZIPARCHIVE_ROOT}/incfs_support/include)
+target_include_directories(libziparchive PRIVATE ${LIBZIPARCHIVE_ROOT})
 
-set_property(TARGET LIBZIPARCHIVE PROPERTY CXX_STANDARD 20)
+set_property(TARGET libziparchive PROPERTY CXX_STANDARD 20)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    target_compile_options(LIBZIPARCHIVE PRIVATE $<BUILD_INTERFACE:-Wno-unknown-attributes>)
+    target_compile_options(libziparchive PRIVATE $<BUILD_INTERFACE:-Wno-unknown-attributes>)
 endif()
