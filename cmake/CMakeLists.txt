@@ -25,7 +25,7 @@ project(libziparchive LANGUAGES CXX)
 include(FetchContent)
 
 FetchContent_Declare(libbase-ndk
-                     GIT_REPOSITORY git@github.com:MaDeG/libbase-ndk.git
+                     GIT_REPOSITORY https://github.com/MaDeG/libbase-ndk.git
                      GIT_TAG master
                      GIT_SUBMODULES ""
                      SOURCE_SUBDIR cmake)
